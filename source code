@@ -1,0 +1,39 @@
+import java.io.BufferedReader;  
+import java.io.FileReader;  
+import java.io.IOException;  
+public class ArtistOfWeek{
+
+     public static void main(String []args){
+        int cols = 2;  
+        int rows = 200;
+        String line = "";
+        String comma =",";
+        String[][] list = new String[rows][cols];
+        
+        BufferedReader br = new BufferedReader(new FileReader("SpotifyArtists.csv")); // reads in file
+        
+        while ((line = br.readLine()) != null) {  
+            list = { {line.split(comma)} , {line.split(comma)} }; // splits file by comma and puts into each row until EOF
+            br.close();
+        }
+        int count = 1, tempCount;
+        int popular = a[0][1].valueOf(); // sets first row artist as a placeholder for most popular artist
+        int temp = 0;// place holder to check if equal
+        
+        for (int i = 0; i < (list.length - 1); i++) {
+            temp = a[i][1].valueOf(); // changes string to int to compare using linear search
+            tempCount = 0; // initializes count of each new temp value
+            
+            for (int j = i+1; j < list.length; j++) {
+                if (temp == a[j][1].valuOf());// checks to see if the temp value is equal to new value
+                    tempCount++; // if they are the same count for this number increase by 1
+            }
+            if (tempCount > count) {
+                popular = temp;
+                count = tempCount;
+                String popularA = popular.toString(); // converts integer back to string
+            }
+        }
+        System.out.println("The most popular artist on the list is: "+ popularA + " with "+ count + " songs on the top 200 board!");
+     }
+}
